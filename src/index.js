@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from '../src/weatherApp/components/App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
+  <div className="weatherTilesListDiv">
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
+  </React.StrictMode>
+  </div>,
   document.getElementById('root')
 );
 
