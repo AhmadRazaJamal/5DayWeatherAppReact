@@ -1,5 +1,7 @@
 import './App.css';
 import { WeatherTilesList } from './weatherTileList';
+import { HourlyWeatherTilesList } from "./hourlyWeatherList";
+import React from 'react';
 
 const weatherData = [
   { 
@@ -10,20 +12,32 @@ const weatherData = [
     weatherTypeImage: 'https://mir-s3-cdn-cf.behance.net/project_modules/disp/c81fed16071075.562a501d5e911.gif',
     weatherHourly: [
       {
+        key: '0011',
         time: "12 pm",
-        temperature: "24"
+        temperature: "24",
+        weatherType: 'Partly Cloudy',
+        weatherTypeImage: 'https://mir-s3-cdn-cf.behance.net/project_modules/disp/c81fed16071075.562a501d5e911.gif',
       },
       {
-        time: "1 am",
-        temperature: "24"
+        key: '0012',
+        time: "1 pm",
+        temperature: "25",
+        weatherType: 'Partly Cloudy',
+        weatherTypeImage: 'https://mir-s3-cdn-cf.behance.net/project_modules/disp/c81fed16071075.562a501d5e911.gif',
       },
       {
-        time: "2 am",
-        temperature: "24"
+        key: '0013',
+        time: "2 pm",
+        temperature: "26",
+        weatherType: 'Sunny',
+        weatherTypeImage: 'https://mir-s3-cdn-cf.behance.net/project_modules/disp/421f0c16071075.562a500e6ddd4.gif', 
       },
       {
-        time: "3 am",
-        temperature: "24"
+        key: '0014',
+        time: "3 pm",
+        temperature: "27",
+        weatherType: 'Sunny',
+        weatherTypeImage: 'https://mir-s3-cdn-cf.behance.net/project_modules/disp/421f0c16071075.562a500e6ddd4.gif', 
       }
     ], 
   },
@@ -58,10 +72,44 @@ const weatherData = [
 ];
 
 function App() {
+
+  const [displayHourly, setDisplayHourly] = React.useState(false);
+  const [displayHourlyIndex, setDisplayHourlyIndex] = React.useState(-1);
+
+  const setDisplayHourlyIndexCallback = (index) => {
+    const indexNo = index ; 
+    setDisplayHourlyIndex(indexNo);
+  }
+
+  function weatherBalloon( cityID ) {
+    var APIkey = '95848a8bff0e348e948feac55a3477d1';
+    fetch('https://api.openweathermap.org/data/2.5/forecast?id=' + cityID+ '&cnt=5&units=metric&appid=' + APIkey)  
+    .then(function(resp) { return resp.json() }) // Convert data to json
+    .then(function(data) {
+      console.log(data);
+    })
+    .catch(function() {
+      console.log("Error fetching weather data")
+    });
+  }
+  
+  window.onload = function() {
+    weatherBalloon( 6183235 );
+  }
+
   return (
-    < WeatherTilesList 
+    <>
+    { < WeatherTilesList 
       weatherData = {weatherData}
-    />
+      setDisplayHourly = {setDisplayHourly}
+      setDisplayHourlyIndexCallback ={setDisplayHourlyIndexCallback}
+    />}
+    { displayHourly && displayHourlyIndex >= 0 ? 
+    <HourlyWeatherTilesList
+      weatherData = {weatherData[displayHourlyIndex]}
+    /> : null
+    } 
+    </> 
   );
 }
 

@@ -2,7 +2,7 @@ import { WeatherTile } from './weatherTile';
 import React, { useEffect } from 'react';
 import './weatherTileList.css';
 
-export const WeatherTilesList = (weatherData) => {
+export const WeatherTilesList = (props) => {
 
     const [showTiles, setShowTiles] = React.useState([]);
 
@@ -18,11 +18,10 @@ export const WeatherTilesList = (weatherData) => {
 
     const setTruthValueCallBack = (id) => {
         var newShowTilesState = showTiles.filter((x) => 
-        { if (x.id !== id){
-                x.showTile = false; 
-            }
-            return x;
-         }); 
+        { x.showTile = !x.showTile; return x;}); 
+
+        props.setDisplayHourly(true);
+        props.setDisplayHourlyIndexCallback(0);
         setShowTiles(newShowTilesState);
     }
 
@@ -32,16 +31,13 @@ export const WeatherTilesList = (weatherData) => {
         for(let key of keys){addShowTilesItem(key);}
     },[]);
 
-    console.log(showTiles);
-
     return (
         <div className='weatherTilesDiv'>
             {
-            (weatherData.weatherData || []).map(
+            (props.weatherData || []).map(
                 weatherDatum => {
                     
                     keys.push(weatherDatum.key);
-                    console.log(getTruthValueForWeatherTile(weatherDatum.key));
 
                     return (
                         <WeatherTile
