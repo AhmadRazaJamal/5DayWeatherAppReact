@@ -24,8 +24,8 @@ export const WeatherTile = ({ temperature, date, weatherType, weatherTypeImage, 
         <Card className={classes.root} onClick={() => setTruthValue(id)}>
             <CardHeader className={classes.header}
                 avatar={
-                    <Typography variant='h2'>
-                        {temperature}<sup><Typography variant='h4' display='inline'>C</Typography></sup>
+                    <Typography variant='h3'>
+                        {temperature}<sup><Typography variant='h5' display='inline'>C</Typography></sup>
                     </Typography>
                 }
                 disableTypography={true}
@@ -43,7 +43,7 @@ export const WeatherTile = ({ temperature, date, weatherType, weatherTypeImage, 
                     </>
                     }
                 subheader={
-                    <Typography variant='h5' align='right'>
+                    <Typography variant='h6' align='right' style= {{textTransform: 'capitalize'}}>
                         {weatherType}
                     </Typography>}
             />

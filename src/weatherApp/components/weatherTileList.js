@@ -6,6 +6,8 @@ export const WeatherTilesList = (props) => {
 
     const [showTiles, setShowTiles] = React.useState([]);
 
+    console.log(showTiles);
+
     const addShowTilesItem = (key) => {
         setShowTiles(showTiles => [...showTiles, {id: key, showTile: true}]);
         // Functional version of setState which stores the values and makes last values available
@@ -28,7 +30,9 @@ export const WeatherTilesList = (props) => {
     let keys = []; // Grabs the keys from the weather Data coming from store 
 
     useEffect(() => {
-        for(let key of keys){addShowTilesItem(key);}
+        for(let key of keys){
+            console.log(key);
+            addShowTilesItem(key);}
     },[]);
 
     return (
