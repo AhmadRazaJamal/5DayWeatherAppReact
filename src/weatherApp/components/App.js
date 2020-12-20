@@ -107,10 +107,10 @@ function App() {
 
   return (
     <>
-      <Typography align='center' variant='h4' style={{ color: 'white', padding: '20px 20px 0px 20px', fontWeight: 'bold' }}>
+      <Typography align='center' variant='h4' style={{ color: '#111', fontFamily: "Helvetica Neue', sans-serif", fontSize: '3rem', fontWeight: 'bold', letterSpacing: '-1px', lineHeight: '1', textAlign: 'center', padding: '20px 20px 0px 20px' }}>
         Seven Days Weather Forecast
       </Typography>
-      <Typography align='center' variant='h6' style={{ color: 'white', padding: '20px', fontWeight: 'bold' }}>
+      <Typography align='center' variant='h6' style={{ color: '#111', fontFamily: "Helvetica Neue', sans-serif", fontWeight: 'bold', letterSpacing: '-1px', lineHeight: '1', padding: '20px' }}>
         Showing Weather for Winnipeg
       </Typography>
 
@@ -124,7 +124,7 @@ function App() {
       }
       { displayHourly && displayHourlyIndex >= 0 ?
         <>
-          <Typography align='center' variant='h4' style={{ color: 'white', padding: '20px', fontWeight: 'bold' }}>
+          <Typography align='center' variant='h4' style={{ color: '#111', fontFamily: "Helvetica Neue', sans-serif", fontSize: '3rem', fontWeight: 'bold', letterSpacing: '-1px', lineHeight: '1', textAlign: 'center', padding: '20px 20px 20px 20px' }}>
             Hourly Weather Forecast
             <Tooltip title={<p>Shows Weather data at 3 hours interval apart from current time</p>} placement="top">
               <IconButton>
