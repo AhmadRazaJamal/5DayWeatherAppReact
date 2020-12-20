@@ -111,7 +111,10 @@ function App() {
         Seven Days Weather Forecast
       </Typography>
       <Typography align='center' variant='h6' style={{ color: '#111', fontFamily: "Helvetica Neue', sans-serif", fontWeight: 'bold', letterSpacing: '-1px', lineHeight: '1', padding: '20px' }}>
-        Showing Weather for Winnipeg
+        Showing Weather for :  
+        <p  style={{ color: 'skyblue', display: 'inline', textDecoration: 'none', lineHeight: '4', backgroundColor: 'white', padding: '3px 7px', marginLeft: "1%" }}>
+          Winnipeg
+        </p>
       </Typography>
 
       {
