@@ -51,6 +51,21 @@ function App() {
 
           let weatherImage;
           switch (data.list[i].weather[0].description) {
+            case "partly cloudy":
+              weatherImage = weatherTypeImages.partlyCloudy;
+              break;
+            case "sunny":
+              weatherImage = weatherTypeImages.sunny;
+              break;
+            case "rainy":
+              weatherImage = weatherTypeImages.rainy;
+              break;
+            case "stormy":
+              weatherImage = weatherTypeImages.stormy;
+              break;
+            case "foggy":
+              weatherImage = weatherTypeImages.foggy;
+              break;
             case "overcast clouds":
               weatherImage = weatherTypeImages.overcastClouds;
               break;
@@ -111,8 +126,8 @@ function App() {
         Seven Days Weather Forecast
       </Typography>
       <Typography align='center' variant='h6' style={{ color: '#111', fontFamily: "Helvetica Neue', sans-serif", fontWeight: 'bold', letterSpacing: '-1px', lineHeight: '1', padding: '20px' }}>
-        Showing Weather for :  
-        <p  style={{ color: 'skyblue', display: 'inline', textDecoration: 'none', lineHeight: '4', backgroundColor: 'white', padding: '3px 7px', marginLeft: "1%" }}>
+        Showing Weather for :
+        <p style={{ color: 'skyblue', display: 'inline', textDecoration: 'none', lineHeight: '4', backgroundColor: 'white', padding: '3px 7px', marginLeft: "1%" }}>
           Winnipeg
         </p>
       </Typography>
