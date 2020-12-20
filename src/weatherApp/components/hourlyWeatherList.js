@@ -18,6 +18,7 @@ export const HourlyWeatherTilesList = (weatherData) => {
                             key={weatherDatum.key}
                             id={weatherDatum.key}
                             alwaysDisplay={true}
+                            setTruthValue={() => null}
                         />
                     )
                 }

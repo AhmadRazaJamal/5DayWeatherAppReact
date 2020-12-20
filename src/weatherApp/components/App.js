@@ -2,6 +2,8 @@ import './App.css';
 import { WeatherTilesList } from './weatherTileList';
 import { HourlyWeatherTilesList } from "./hourlyWeatherList";
 import React from 'react';
+import { Tooltip, Typography, IconButton } from '@material-ui/core';
+import InfoIcon from '@material-ui/icons/Info';
 
 const weatherTypeImages = {
   partlyCloudy: 'https://mir-s3-cdn-cf.behance.net/project_modules/disp/c81fed16071075.562a501d5e911.gif',
@@ -27,6 +29,7 @@ function App() {
   }
 
   const [weatherData, setData] = React.useState([]);
+  const [weatherDataKeys, setWeatherDataKeys] = React.useState([]);
 
   React.useEffect(() => {
     fetch('https://api.openweathermap.org/data/2.5/forecast?id=' + 6183235 + '&units=metric&appid=' + '95848a8bff0e348e948feac55a3477d1')
@@ -34,8 +37,11 @@ function App() {
       .then(function (data) {
 
         let fiveDayweatherData = [];
+        let keys = [];
         let weatherDatum;
-        let index = -1; 
+        let index = -1;
+
+        console.log(data);
 
         for (let i in data.list) {
 
@@ -58,7 +64,7 @@ function App() {
               weatherImage = weatherTypeImages.scatteredClouds;
               break;
             case "broken clouds":
-            weatherImage = weatherTypeImages.fewClouds;
+              weatherImage = weatherTypeImages.fewClouds;
               break;
             case "snow":
               weatherImage = weatherTypeImages.lightSnow;
@@ -81,16 +87,18 @@ function App() {
 
           if (i % 8 == 0) {
             fiveDayweatherData.push(weatherDatum);
-            index = index + 1; 
+            keys.push(weatherDatum.key);
+            index = index + 1;
           }
-          else{
+          else {
             fiveDayweatherData[index].weatherHourly.push(weatherDatum);
           }
         }
-        return fiveDayweatherData;
+        const dataPair = { fiveDayweatherData, keys };
+        return dataPair;
       })
       .then(
-        fiveDayweatherData => setData({ fiveDayweatherData })
+        dataPair => { setData(dataPair.fiveDayweatherData); setWeatherDataKeys(dataPair.keys); }
       )
       .catch(function () {
         console.log("Error fetching weather data")
@@ -99,15 +107,37 @@ function App() {
 
   return (
     <>
-      { < WeatherTilesList
-        weatherData={weatherData.fiveDayweatherData}
-        setDisplayHourly={setDisplayHourly}
-        setDisplayHourlyIndexCallback={setDisplayHourlyIndexCallback}
-      />}
+      <Typography align='center' variant='h4' style={{ color: 'white', padding: '20px 20px 0px 20px', fontWeight: 'bold' }}>
+        Seven Days Weather Forecast
+      </Typography>
+      <Typography align='center' variant='h6' style={{ color: 'white', padding: '20px', fontWeight: 'bold' }}>
+        Showing Weather for Winnipeg
+      </Typography>
+
+      {
+        < WeatherTilesList
+          weatherData={weatherData}
+          setDisplayHourly={setDisplayHourly}
+          setDisplayHourlyIndexCallback={setDisplayHourlyIndexCallback}
+          keys={weatherDataKeys}
+        />
+      }
       { displayHourly && displayHourlyIndex >= 0 ?
-        <HourlyWeatherTilesList
-          weatherData={weatherData.fiveDayweatherData[displayHourlyIndex]}
-        /> : null
+        <>
+          <Typography align='center' variant='h4' style={{ color: 'white', padding: '20px', fontWeight: 'bold' }}>
+            Hourly Weather Forecast
+            <Tooltip title={<p>Shows Weather data at 3 hours interval apart from current time</p>} placement="top">
+              <IconButton>
+                <InfoIcon />
+              </IconButton>
+            </Tooltip>
+          </Typography>
+
+          <HourlyWeatherTilesList
+            weatherData={weatherData[displayHourlyIndex]}
+          />
+        </>
+        : null
       }
     </>
   );
