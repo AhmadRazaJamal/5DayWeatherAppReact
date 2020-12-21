@@ -20,7 +20,7 @@ export const WeatherTile = ({ temperature, date, weatherType, weatherTypeImage, 
     const classes = useStyles();
 
     let weatherTile;
-    (showTile || alwaysDisplay)  ? weatherTile =
+    (showTile || alwaysDisplay) ? weatherTile =
         <Card className={classes.root} onClick={() => setTruthValue(id)}>
             <CardHeader className={classes.header}
                 avatar={
@@ -31,19 +31,19 @@ export const WeatherTile = ({ temperature, date, weatherType, weatherTypeImage, 
                 disableTypography={true}
                 title={
                     <>
-                    {
-                    time ? 
-                    <Typography variant='body2' noWrap align='right'>
-                        {time}
-                    </Typography> : null
-                    }
-                    <Typography variant='body2' noWrap align='right'>
-                        {date}
-                    </Typography>
+                        {
+                            time ?
+                                <Typography variant='body2' noWrap align='right'>
+                                    {time}
+                                </Typography> : null
+                        }
+                        <Typography variant='body2' noWrap align='right'>
+                            {date}
+                        </Typography>
                     </>
-                    }
+                }
                 subheader={
-                    <Typography variant='h6' align='right' style= {{textTransform: 'capitalize'}}>
+                    <Typography variant='h6' align='right' style={{ textTransform: 'capitalize' }}>
                         {weatherType}
                     </Typography>}
             />

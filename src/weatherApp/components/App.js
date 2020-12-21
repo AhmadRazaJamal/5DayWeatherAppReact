@@ -1,10 +1,11 @@
+import React from 'react';
 import './App.css';
 import { WeatherTilesList } from './weatherTileList';
 import { HourlyWeatherTilesList } from "./hourlyWeatherList";
-import React from 'react';
 import { Tooltip, Typography, IconButton } from '@material-ui/core';
 import InfoIcon from '@material-ui/icons/Info';
 
+/* All images are subject to copyright and belong to their respective users and creators, used only for learning purposes */
 const weatherTypeImages = {
   partlyCloudy: 'https://mir-s3-cdn-cf.behance.net/project_modules/disp/c81fed16071075.562a501d5e911.gif',
   sunny: 'https://mir-s3-cdn-cf.behance.net/project_modules/disp/421f0c16071075.562a500e6ddd4.gif',
@@ -18,21 +19,20 @@ const weatherTypeImages = {
   fewClouds: 'https://media1.giphy.com/media/26uf7RM9Nb9WgpMv6/source.gif',
 }
 
-function App() {
+const App = () => {
 
   const [displayHourly, setDisplayHourly] = React.useState(false);
   const [displayHourlyIndex, setDisplayHourlyIndex] = React.useState(-1);
 
   const setDisplayHourlyIndexCallback = (index) => {
-    const indexNo = index;
-    setDisplayHourlyIndex(indexNo);
+    setDisplayHourlyIndex(index);
   }
 
   const [weatherData, setData] = React.useState([]);
   const [weatherDataKeys, setWeatherDataKeys] = React.useState([]);
 
   React.useEffect(() => {
-    fetch('https://api.openweathermap.org/data/2.5/forecast?id=' + 6183235 + '&units=metric&appid=' + '95848a8bff0e348e948feac55a3477d1')
+    fetch('https://api.openweathermap.org/data/2.5/forecast?id=6183235&units=metric&appid=95848a8bff0e348e948feac55a3477d1')
       .then(resp => resp.json()) // Convert data to json
       .then(function (data) {
 
@@ -50,6 +50,7 @@ function App() {
           let date = dateString.slice(0, 10);
 
           let weatherImage;
+
           switch (data.list[i].weather[0].description) {
             case "partly cloudy":
               weatherImage = weatherTypeImages.partlyCloudy;
@@ -100,7 +101,7 @@ function App() {
             weatherHourly: [],
           }
 
-          if (i % 8 == 0) {
+          if (i % 8 === 0) {
             fiveDayweatherData.push(weatherDatum);
             keys.push(weatherDatum.key);
             index = index + 1;

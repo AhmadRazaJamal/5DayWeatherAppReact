@@ -6,23 +6,23 @@ export const HourlyWeatherTilesList = (weatherData) => {
     return (
         <div className='weatherTilesDiv'>
             {
-            (weatherData.weatherData.weatherHourly || []).map(
-                weatherDatum => {
-                    return (
-                        <WeatherTile
-                            temperature={weatherDatum.temperature}
-                            date={weatherData.weatherData.date}
-                            weatherType={weatherDatum.weatherType}
-                            weatherTypeImage={weatherDatum.weatherTypeImage}
-                            time={weatherDatum.time}
-                            key={weatherDatum.key}
-                            id={weatherDatum.key}
-                            alwaysDisplay={true}
-                            setTruthValue={() => null}
-                        />
-                    )
-                }
-            )
+                (weatherData.weatherData.weatherHourly || []).map(
+                    weatherDatum => {
+                        return (
+                            <WeatherTile
+                                temperature={weatherDatum.temperature}
+                                date={weatherData.weatherData.date}
+                                weatherType={weatherDatum.weatherType}
+                                weatherTypeImage={weatherDatum.weatherTypeImage}
+                                time={weatherDatum.time}
+                                key={weatherDatum.key}
+                                id={weatherDatum.key}
+                                alwaysDisplay={true}
+                                setTruthValue={() => null}
+                            />
+                        )
+                    }
+                )
             }
         </div>
     )

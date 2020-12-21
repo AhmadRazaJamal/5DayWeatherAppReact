@@ -11,8 +11,8 @@ export const WeatherTilesList = (props) => {
 
     const addShowTilesItem = (key) => {
         setShowTiles(showTiles => [...showTiles, { id: key, showTile: true }]);
-        // Functional version of setState which stores the values and makes last values available
-        // since the new values in usual setState aren't available until later of the render cycle
+        /* Functional version of setState which stores the values and makes last values available
+        since the new values in usual setState aren't available until later of the render cycle */
     }
 
     const getTruthValueForWeatherTile = (id) => {
@@ -21,7 +21,7 @@ export const WeatherTilesList = (props) => {
 
     const setTruthValueCallBack = (key) => {
         var newShowTilesState = showTiles.filter((x) => {
-            if (x.id == key) {
+            if (x.id === key) {
                 props.setDisplayHourlyIndexCallback(showTiles.indexOf(x));
                 return x;
             }
@@ -59,12 +59,12 @@ export const WeatherTilesList = (props) => {
 
     return (
         <>
-        
-        { hourlyWeatherShown ?
-            <IconButton onClick={() => setTruthValueToInitial()} color="secondary" aria-label="add an alarm" size="medium" style={{ backgroundColor: "white", marginLeft: '1%', display: "initial" }}>
-                <ArrowBackIosIcon />
-            </IconButton> : null 
-        }
+
+            { hourlyWeatherShown ?
+                <IconButton onClick={() => setTruthValueToInitial()} color="secondary" aria-label="add an alarm" size="medium" style={{ backgroundColor: "white", marginLeft: '1%', display: "initial" }}>
+                    <ArrowBackIosIcon />
+                </IconButton> : null
+            }
             <div className='weatherTilesDiv'>
                 {
                     (props.weatherData || []).map(
