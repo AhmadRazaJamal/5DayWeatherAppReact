@@ -1,4 +1,4 @@
-## Check the website at : https://ahmadrazajamal.github.io/7DayWeatherAppReact/
+## Live website at : https://ahmadrazajamal.github.io/7DayWeatherAppReact/
 
 ## About 
 
