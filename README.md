@@ -1,4 +1,12 @@
-# Check the website at : https://ahmadrazajamal.github.io/7DayWeatherAppReact/
+## Live website at : https://ahmadrazajamal.github.io/7DayWeatherAppReact/
+
+## About 
+
+A 5 day weather forecast for Winnipeg which uses the openWeather API to get a 5 day forcast and displays them in the form of cards.
+
+Clicking any of the cards shows a weather forecast for the day spaced apart at 3 hours interval.
+
+User can navigate between 5 day weather and hourly weather. 
 
 # Getting Started with Create React App
 
