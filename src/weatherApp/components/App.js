@@ -124,7 +124,7 @@ const App = () => {
   return (
     <>
       <Typography align='center' variant='h4' style={{ color: '#111', fontFamily: "Helvetica Neue', sans-serif", fontSize: '3rem', fontWeight: 'bold', letterSpacing: '-1px', lineHeight: '1', textAlign: 'center', padding: '20px 20px 0px 20px' }}>
-        Seven Days Weather Forecast
+        Five Days Weather Forecast
       </Typography>
       <Typography align='center' variant='h6' style={{ color: '#111', fontFamily: "Helvetica Neue', sans-serif", fontWeight: 'bold', letterSpacing: '-1px', lineHeight: '1', padding: '20px' }}>
         Showing Weather for :
